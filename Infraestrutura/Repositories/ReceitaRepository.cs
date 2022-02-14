@@ -19,6 +19,17 @@ namespace Infraestrutura.Repositories
             _context = context;
         }
 
+        public async Task<ReceitaDominio> AtualizarReceita(ReceitaDominio receitaDominio)
+        {
+            var resultado = await _context.Receita.SingleOrDefaultAsync(r => r.Id == receitaDominio.Id);
+            if (resultado != null)
+            {
+                _context.Entry(resultado).CurrentValues.SetValues(receitaDominio);
+                await _context.SaveChangesAsync();
+            }
+            return resultado;
+        }
+
         public async Task<ReceitaDominio> BuscarReceita(long id)
         {
             var resultado = await _context.Receita.Where(r => r.Id == id).FirstOrDefaultAsync();

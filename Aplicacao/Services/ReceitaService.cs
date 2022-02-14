@@ -19,6 +19,19 @@ namespace Aplicacao.Services
             _receitaRepository = receitaRepository;
         }
 
+        public async Task<ReceitaDominio> AtualizarReceita(ReceitaDominio receitaDominio, long id)
+        {
+            if (receitaDominio == null) return null;
+            if (!receitaDominio.VerificarDescricao()) return null;
+
+            var cadastroRepetido = await _receitaRepository.VerificarReceitaMes(receitaDominio);
+            if (cadastroRepetido != null) return null;
+            receitaDominio.Id = id;
+            var resultado = await _receitaRepository.AtualizarReceita(receitaDominio);
+
+            return resultado;
+        }
+
         public async Task<ReceitaDominio> BuscarReceita(long id)
         {
             var resultado = await _receitaRepository.BuscarReceita(id);
@@ -33,10 +46,7 @@ namespace Aplicacao.Services
 
         public async Task<ReceitaDominio> CadastroReceita(ReceitaDominio receitaDominio)
         {
-            if (receitaDominio == null)
-            {
-                return null;
-            }
+            if (receitaDominio == null) return null;
             if (!receitaDominio.VerificarDescricao()) return null;
 
             var cadastroRepetido = await _receitaRepository.VerificarReceitaMes(receitaDominio);

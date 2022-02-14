@@ -13,5 +13,6 @@ namespace Infraestrutura.Interfaces
         Task<ReceitaDominio> BuscarReceita(long id);
         Task<ReceitaDominio> VerificarReceitaMes(ReceitaDominio receitaDominio);
         Task<IEnumerable<ReceitaDominio>> BuscarTodasReceitas();
+        Task<ReceitaDominio> AtualizarReceita(ReceitaDominio receitaDominio);
     }
 }

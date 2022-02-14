@@ -41,5 +41,15 @@ namespace Api.Controllers
             var resultado = await _receitaService.BuscarReceita(id);
             return Ok(_mapper.Map<ReceitaDto>(resultado));
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ReceitaDto>> AtualizarReceita([FromBody] ReceitaDto receitaDto,
+            long id)
+        {
+            var resultado = await _receitaService.AtualizarReceita(_mapper.Map<ReceitaDominio>(receitaDto)
+                , id);
+            if (resultado != null) return Ok(_mapper.Map<ReceitaDto>(resultado));
+            return BadRequest();
+        }
     }
 }
