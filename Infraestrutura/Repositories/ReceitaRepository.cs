@@ -31,5 +31,14 @@ namespace Infraestrutura.Repositories
             await _context.SaveChangesAsync();
             return receitaDominio;
         }
+
+        public async Task<ReceitaDominio> VerificarReceitaMes(ReceitaDominio receitaDominio)
+        {
+            var resultado = await _context.Receita.Where(r => r.Descricao == receitaDominio.Descricao)
+                .Where(r => r.DataDeCadastro.Month == receitaDominio.DataDeCadastro.Month)
+                .FirstOrDefaultAsync();
+            return resultado;
+            
+        }
     }
 }

@@ -32,6 +32,9 @@ namespace Aplicacao.Services
                 return null;
             }
             if (!receitaDominio.VerificarDescricao()) return null;
+
+            var cadastroRepetido = await _receitaRepository.VerificarReceitaMes(receitaDominio);
+            if (cadastroRepetido != null) return null;
             var resultado = await _receitaRepository.CadastroReceita(receitaDominio);
             
             return resultado;
