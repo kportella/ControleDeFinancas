@@ -25,6 +25,12 @@ namespace Infraestrutura.Repositories
             return resultado;
         }
 
+        public async Task<IEnumerable<ReceitaDominio>> BuscarTodasReceitas()
+        {
+            var resultados = await _context.Receita.ToListAsync();
+            return resultados;
+        }
+
         public async Task<ReceitaDominio> CadastroReceita(ReceitaDominio receitaDominio)
         {
             _context.Receita.Add(receitaDominio);

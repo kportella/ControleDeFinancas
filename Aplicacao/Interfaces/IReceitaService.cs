@@ -12,5 +12,6 @@ namespace Aplicacao.Interfaces
     {
         Task<ReceitaDominio> CadastroReceita(ReceitaDominio receitaDominio);
         Task<ReceitaDominio> BuscarReceita(long id);
+        Task<IEnumerable<ReceitaDominio>> BuscarTodasReceitas();
     }
 }

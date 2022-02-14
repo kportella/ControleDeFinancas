@@ -28,6 +28,12 @@ namespace Api.Controllers
             if (resultado != null) return Ok(_mapper.Map<ReceitaDto>(resultado));
             return BadRequest();
         }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ReceitaDto>>> BuscarTodasReceitas()
+        {
+            var resultados = await _receitaService.BuscarTodasReceitas();
+            return Ok(_mapper.Map<IEnumerable<ReceitaDto>>(resultados));
+        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ReceitaDto>> BuscarReceita(long id)

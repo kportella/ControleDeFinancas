@@ -25,6 +25,12 @@ namespace Aplicacao.Services
             return resultado;
         }
 
+        public async Task<IEnumerable<ReceitaDominio>> BuscarTodasReceitas()
+        {
+            var resultados = await _receitaRepository.BuscarTodasReceitas();
+            return resultados;
+        }
+
         public async Task<ReceitaDominio> CadastroReceita(ReceitaDominio receitaDominio)
         {
             if (receitaDominio == null)
