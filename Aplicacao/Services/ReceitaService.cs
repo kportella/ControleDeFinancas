@@ -55,5 +55,12 @@ namespace Aplicacao.Services
             
             return resultado;
         }
+
+        public async Task<bool> ExcluirReceita(long id)
+        {
+            var resultado = await _receitaRepository.ExcluirReceita(id);
+
+            return resultado;
+        }
     }
 }

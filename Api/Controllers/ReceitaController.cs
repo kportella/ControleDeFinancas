@@ -51,5 +51,13 @@ namespace Api.Controllers
             if (resultado != null) return Ok(_mapper.Map<ReceitaDto>(resultado));
             return BadRequest();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<bool>> ExcluirReceita(long id)
+        {
+            var resultado = await _receitaService.ExcluirReceita(id);
+            if (resultado) return Ok(resultado);
+            return BadRequest();
+        }
     }
 }

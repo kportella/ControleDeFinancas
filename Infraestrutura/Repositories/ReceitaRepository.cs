@@ -21,13 +21,9 @@ namespace Infraestrutura.Repositories
 
         public async Task<ReceitaDominio> AtualizarReceita(ReceitaDominio receitaDominio)
         {
-            var resultado = await _context.Receita.SingleOrDefaultAsync(r => r.Id == receitaDominio.Id);
-            if (resultado != null)
-            {
-                _context.Entry(resultado).CurrentValues.SetValues(receitaDominio);
-                await _context.SaveChangesAsync();
-            }
-            return resultado;
+            _context.Receita.Update(receitaDominio);
+            await _context.SaveChangesAsync();
+            return receitaDominio;
         }
 
         public async Task<ReceitaDominio> BuscarReceita(long id)
@@ -47,6 +43,22 @@ namespace Infraestrutura.Repositories
             _context.Receita.Add(receitaDominio);
             await _context.SaveChangesAsync();
             return receitaDominio;
+        }
+
+        public async Task<bool> ExcluirReceita(long id)
+        {
+            try
+            {
+                var receita = await _context.Receita.Where(r => r.Id == id).FirstOrDefaultAsync();
+                if (receita == null) return false;
+                _context.Receita.Remove(receita);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public async Task<ReceitaDominio> VerificarReceitaMes(ReceitaDominio receitaDominio)
