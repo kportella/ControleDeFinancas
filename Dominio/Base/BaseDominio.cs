@@ -24,5 +24,11 @@ namespace Dominio.Base
         [Column("dataCadastro")]
         [Required]
         public DateTime DataDeCadastro { get; set; }
+
+        public bool VerificarDescricao()
+        {
+            if (Descricao.Length > 0) return true;
+            return false;
+        }
     }
 }

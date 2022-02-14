@@ -10,5 +10,6 @@ namespace Infraestrutura.Interfaces
     public interface IReceitaRepository
     {
         Task<ReceitaDominio> CadastroReceita(ReceitaDominio receitaDominio);
+        Task<ReceitaDominio> BuscarReceita(long id);
     }
 }

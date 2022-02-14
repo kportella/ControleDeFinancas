@@ -11,5 +11,6 @@ namespace Aplicacao.Interfaces
     public interface IReceitaService
     {
         Task<ReceitaDominio> CadastroReceita(ReceitaDominio receitaDominio);
+        Task<ReceitaDominio> BuscarReceita(long id);
     }
 }
