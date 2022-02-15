@@ -22,11 +22,16 @@ namespace Aplicacao.Services
             if (despesaDominio == null) return null;
             if (!despesaDominio.VerificarDescricao()) return null;
 
-            var cadastroRepetido = await _despesaRepository.VerificarReceitaMes(despesaDominio);
+            var cadastroRepetido = await _despesaRepository.VerificarDespesaMes(despesaDominio);
             if (cadastroRepetido != null) return null;
             var resultado = await _despesaRepository.CadastrarDespesa(despesaDominio);
 
             return resultado;
+        }
+        public async Task<IEnumerable<DespesaDominio>> BuscarTodasDespesas()
+        {
+            var resultados = await _despesaRepository.BuscarTodasDespesas();
+            return resultados;
         }
     }
 }

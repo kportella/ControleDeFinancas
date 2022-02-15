@@ -10,6 +10,7 @@ namespace Aplicacao.Interfaces
     public interface IDespesaService
     {
         Task<DespesaDominio> CadastrarDespesa(DespesaDominio despesaDominio);
+        Task<IEnumerable<DespesaDominio>> BuscarTodasDespesas();
 
     }
 }

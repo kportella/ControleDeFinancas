@@ -28,5 +28,12 @@ namespace Api.Controllers
             if (resultado != null) return Ok(_mapper.Map<DespesaDto>(resultado));
             return BadRequest();
         }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<DespesaDto>>> BuscarTodasDespesas()
+        {
+            var resultados = await _despesaService.BuscarTodasDespesas();
+            return Ok(_mapper.Map<IEnumerable<DespesaDto>>(resultados));
+        }
     }
 }

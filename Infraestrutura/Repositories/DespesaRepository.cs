@@ -25,12 +25,17 @@ namespace Infraestrutura.Repositories
             await _context.SaveChangesAsync();
             return despesaDominio;
         }
-        public async Task<DespesaDominio> VerificarReceitaMes(DespesaDominio despesaDominio)
+        public async Task<DespesaDominio> VerificarDespesaMes(DespesaDominio despesaDominio)
         {
             var resultado = await _context.Despesa.Where(d => d.Descricao == despesaDominio.Descricao)
                 .Where(d => d.DataDeCadastro.Month == despesaDominio.DataDeCadastro.Month)
                 .FirstOrDefaultAsync();
             return resultado;
+        }
+        public async Task<IEnumerable<DespesaDominio>> BuscarTodasDespesas()
+        {
+            var resultados = await _context.Despesa.ToListAsync();
+            return resultados;
         }
     }
 }

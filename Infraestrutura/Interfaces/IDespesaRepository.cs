@@ -9,8 +9,10 @@ namespace Infraestrutura.Interfaces
 {
     public interface IDespesaRepository
     {
-        Task<DespesaDominio> VerificarReceitaMes(DespesaDominio despesaDominio);
+        Task<DespesaDominio> VerificarDespesaMes(DespesaDominio despesaDominio);
         Task<DespesaDominio> CadastrarDespesa(DespesaDominio despesaDominio);
+        Task<IEnumerable<DespesaDominio>> BuscarTodasDespesas();
+
 
     }
 }
