@@ -22,6 +22,7 @@ builder.Services.AddDbContext<MySQLContext>(options => options.
 var config = new AutoMapper.MapperConfiguration(cfg =>
     {
         cfg.CreateMap<ReceitaDto, ReceitaDominio>().ReverseMap();
+        cfg.CreateMap<DespesaDto, DespesaDominio>().ReverseMap();
     });
 
 IMapper mapper = config.CreateMapper();
@@ -31,6 +32,10 @@ builder.Services.AddSingleton(mapper);
 builder.Services.AddScoped<IReceitaService, ReceitaService>();
 
 builder.Services.AddScoped<IReceitaRepository, ReceitaRepository>();
+
+builder.Services.AddScoped<IDespesaService, DespesaService>();
+
+builder.Services.AddScoped<IDespesaRepository, DespesaRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

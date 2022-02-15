@@ -67,7 +67,6 @@ namespace Infraestrutura.Repositories
                 .Where(r => r.DataDeCadastro.Month == receitaDominio.DataDeCadastro.Month)
                 .FirstOrDefaultAsync();
             return resultado;
-            
         }
     }
 }
