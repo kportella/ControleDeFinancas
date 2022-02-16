@@ -48,5 +48,20 @@ namespace Infraestrutura.Repositories
             await _context.SaveChangesAsync();
             return despesaDominio;
         }
+        public async Task<bool> ExcluirDespesa(long id)
+        {
+            try
+            {
+                var despesa = await _context.Despesa.Where(d => d.Id == id).FirstOrDefaultAsync();
+                if (despesa == null) return false;
+                _context.Despesa.Remove(despesa);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

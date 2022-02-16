@@ -14,6 +14,8 @@ namespace Infraestrutura.Interfaces
         Task<IEnumerable<DespesaDominio>> BuscarTodasDespesas();
         Task<DespesaDominio> BuscarDespesa(long id);
         Task<DespesaDominio> AtualizarReceita(DespesaDominio despesaDominio);
+        Task<bool> ExcluirDespesa(long id);
+
 
 
 

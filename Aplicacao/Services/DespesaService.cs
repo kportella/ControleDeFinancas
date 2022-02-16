@@ -50,5 +50,11 @@ namespace Aplicacao.Services
 
             return resultado;
         }
+        public async Task<bool> ExcluirDespesa(long id)
+        {
+            var resultado = await _despesaRepository.ExcluirDespesa(id);
+
+            return resultado;
+        }
     }
 }
