@@ -42,5 +42,14 @@ namespace Api.Controllers
             var resultado = await _despesaService.BuscarDespesa(id);
             return Ok(_mapper.Map<DespesaDto>(resultado));
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<DespesaDto>> AtualizarReceita([FromBody] DespesaDto despesaDto,
+            long id)
+        {
+            var resultado = await _despesaService.AtualizarDespesa(_mapper.Map<DespesaDominio>(despesaDto)
+                , id);
+            if (resultado != null) return Ok(_mapper.Map<DespesaDto>(resultado));
+            return BadRequest();
+        }
     }
 }

@@ -38,5 +38,17 @@ namespace Aplicacao.Services
             var resultado = await _despesaRepository.BuscarDespesa(id);
             return resultado;
         }
+        public async Task<DespesaDominio> AtualizarDespesa(DespesaDominio despesaDominio, long id)
+        {
+            if (despesaDominio == null) return null;
+            if (!despesaDominio.VerificarDescricao()) return null;
+
+            var cadastroRepetido = await _despesaRepository.VerificarDespesaMes(despesaDominio);
+            if (cadastroRepetido != null) return null;
+            despesaDominio.Id = id;
+            var resultado = await _despesaRepository.AtualizarReceita(despesaDominio);
+
+            return resultado;
+        }
     }
 }

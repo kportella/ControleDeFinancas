@@ -42,5 +42,11 @@ namespace Infraestrutura.Repositories
             var resultado = await _context.Despesa.Where(d => d.Id == id).FirstOrDefaultAsync();
             return resultado;
         }
+        public async Task<DespesaDominio> AtualizarReceita(DespesaDominio despesaDominio)
+        {
+            _context.Despesa.Update(despesaDominio);
+            await _context.SaveChangesAsync();
+            return despesaDominio;
+        }
     }
 }

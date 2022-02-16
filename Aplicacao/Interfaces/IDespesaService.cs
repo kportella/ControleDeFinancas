@@ -12,6 +12,7 @@ namespace Aplicacao.Interfaces
         Task<DespesaDominio> CadastrarDespesa(DespesaDominio despesaDominio);
         Task<IEnumerable<DespesaDominio>> BuscarTodasDespesas();
         Task<DespesaDominio> BuscarDespesa(long id);
+        Task<DespesaDominio> AtualizarDespesa(DespesaDominio despesaDominio, long id);
 
 
     }
