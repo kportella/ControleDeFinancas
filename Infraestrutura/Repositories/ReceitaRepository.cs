@@ -38,7 +38,7 @@ namespace Infraestrutura.Repositories
             return resultados;
         }
 
-        public async Task<ReceitaDominio> CadastroReceita(ReceitaDominio receitaDominio)
+        public async Task<ReceitaDominio> CadastrarReceita(ReceitaDominio receitaDominio)
         {
             _context.Receita.Add(receitaDominio);
             await _context.SaveChangesAsync();

@@ -21,9 +21,9 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ReceitaDto>> CadastroReceitas([FromBody] ReceitaDto receitaDto)
+        public async Task<ActionResult<ReceitaDto>> CadastrarReceita([FromBody] ReceitaDto receitaDto)
         {
-            var resultado = await _receitaService.CadastroReceita(_mapper.Map<ReceitaDominio>(receitaDto));
+            var resultado = await _receitaService.CadastrarReceita(_mapper.Map<ReceitaDominio>(receitaDto));
 
             if (resultado != null) return Ok(_mapper.Map<ReceitaDto>(resultado));
             return BadRequest();

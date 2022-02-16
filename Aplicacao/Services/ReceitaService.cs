@@ -44,14 +44,14 @@ namespace Aplicacao.Services
             return resultados;
         }
 
-        public async Task<ReceitaDominio> CadastroReceita(ReceitaDominio receitaDominio)
+        public async Task<ReceitaDominio> CadastrarReceita(ReceitaDominio receitaDominio)
         {
             if (receitaDominio == null) return null;
             if (!receitaDominio.VerificarDescricao()) return null;
 
             var cadastroRepetido = await _receitaRepository.VerificarReceitaMes(receitaDominio);
             if (cadastroRepetido != null) return null;
-            var resultado = await _receitaRepository.CadastroReceita(receitaDominio);
+            var resultado = await _receitaRepository.CadastrarReceita(receitaDominio);
             
             return resultado;
         }

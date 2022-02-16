@@ -9,7 +9,7 @@ namespace Infraestrutura.Interfaces
 {
     public interface IReceitaRepository
     {
-        Task<ReceitaDominio> CadastroReceita(ReceitaDominio receitaDominio);
+        Task<ReceitaDominio> CadastrarReceita(ReceitaDominio receitaDominio);
         Task<ReceitaDominio> BuscarReceita(long id);
         Task<ReceitaDominio> VerificarReceitaMes(ReceitaDominio receitaDominio);
         Task<IEnumerable<ReceitaDominio>> BuscarTodasReceitas();

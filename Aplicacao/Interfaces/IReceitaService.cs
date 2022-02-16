@@ -10,7 +10,7 @@ namespace Aplicacao.Interfaces
 {
     public interface IReceitaService
     {
-        Task<ReceitaDominio> CadastroReceita(ReceitaDominio receitaDominio);
+        Task<ReceitaDominio> CadastrarReceita(ReceitaDominio receitaDominio);
         Task<ReceitaDominio> BuscarReceita(long id);
         Task<IEnumerable<ReceitaDominio>> BuscarTodasReceitas();
         Task<ReceitaDominio> AtualizarReceita(ReceitaDominio receitaDominio, long id);
