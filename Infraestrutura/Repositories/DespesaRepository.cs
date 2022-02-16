@@ -37,5 +37,10 @@ namespace Infraestrutura.Repositories
             var resultados = await _context.Despesa.ToListAsync();
             return resultados;
         }
+        public async Task<DespesaDominio> BuscarDespesa(long id)
+        {
+            var resultado = await _context.Despesa.Where(d => d.Id == id).FirstOrDefaultAsync();
+            return resultado;
+        }
     }
 }

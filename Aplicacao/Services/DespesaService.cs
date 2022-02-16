@@ -33,5 +33,10 @@ namespace Aplicacao.Services
             var resultados = await _despesaRepository.BuscarTodasDespesas();
             return resultados;
         }
+        public async Task<DespesaDominio> BuscarDespesa(long id)
+        {
+            var resultado = await _despesaRepository.BuscarDespesa(id);
+            return resultado;
+        }
     }
 }
