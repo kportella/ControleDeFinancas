@@ -23,40 +23,75 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<ActionResult<DespesaDto>> CadastrarDespesa([FromBody] DespesaDto despesaDto)
         {
-            var resultado = await _despesaService.CadastrarDespesa(_mapper.Map<DespesaDominio>(despesaDto));
+            try
+            {
+                var resultado = await _despesaService.CadastrarDespesa(_mapper.Map<DespesaDominio>(despesaDto));
 
-            if (resultado != null) return Ok(_mapper.Map<DespesaDto>(resultado));
-            return BadRequest();
+                if (resultado != null) return Ok(_mapper.Map<DespesaDto>(resultado));
+                return BadRequest();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DespesaDto>>> BuscarTodasDespesas()
         {
-            var resultados = await _despesaService.BuscarTodasDespesas();
-            return Ok(_mapper.Map<IEnumerable<DespesaDto>>(resultados));
+            try
+            {
+                var resultados = await _despesaService.BuscarTodasDespesas();
+                return Ok(_mapper.Map<IEnumerable<DespesaDto>>(resultados));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<DespesaDto>> BuscarDespesa(long id)
         {
-            var resultado = await _despesaService.BuscarDespesa(id);
-            return Ok(_mapper.Map<DespesaDto>(resultado));
+            try
+            {
+                var resultado = await _despesaService.BuscarDespesa(id);
+                return Ok(_mapper.Map<DespesaDto>(resultado));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
         }
         [HttpPut("{id}")]
         public async Task<ActionResult<DespesaDto>> AtualizarReceita([FromBody] DespesaDto despesaDto,
             long id)
         {
-            var resultado = await _despesaService.AtualizarDespesa(_mapper.Map<DespesaDominio>(despesaDto)
-                , id);
-            if (resultado != null) return Ok(_mapper.Map<DespesaDto>(resultado));
-            return BadRequest();
+            try
+            {
+                var resultado = await _despesaService.AtualizarDespesa(_mapper.Map<DespesaDominio>(despesaDto)
+                    , id);
+                if (resultado != null) return Ok(_mapper.Map<DespesaDto>(resultado));
+                return BadRequest();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
         }
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> ExcluirDespesa(long id)
         {
-            var resultado = await _despesaService.ExcluirDespesa(id);
-            if (resultado) return Ok(resultado);
-            return BadRequest();
+            try
+            {
+                var resultado = await _despesaService.ExcluirDespesa(id);
+                if (resultado) return Ok(resultado);
+                return BadRequest();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
         }
     }
 }

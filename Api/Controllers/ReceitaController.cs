@@ -13,6 +13,7 @@ namespace Api.Controllers
     {
         private readonly IReceitaService _receitaService;
         private readonly IMapper _mapper;
+        private readonly string Url = "https://localhost:7017/";
 
         public ReceitaController(IReceitaService receitaService, IMapper mapper)
         {
@@ -23,41 +24,75 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<ActionResult<ReceitaDto>> CadastrarReceita([FromBody] ReceitaDto receitaDto)
         {
-            var resultado = await _receitaService.CadastrarReceita(_mapper.Map<ReceitaDominio>(receitaDto));
+            try
+            {
+                var resultado = await _receitaService.CadastrarReceita(_mapper.Map<ReceitaDominio>(receitaDto));
 
-            if (resultado != null) return Ok(_mapper.Map<ReceitaDto>(resultado));
-            return BadRequest();
+                if (resultado != null) return Created($"{Url}{receitaDto.Id}", _mapper.Map<ReceitaDto>(resultado));
+                return BadRequest();
+            } catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
         }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ReceitaDto>>> BuscarTodasReceitas()
         {
-            var resultados = await _receitaService.BuscarTodasReceitas();
-            return Ok(_mapper.Map<IEnumerable<ReceitaDto>>(resultados));
+            try
+            {
+                var resultados = await _receitaService.BuscarTodasReceitas();
+                return Ok(_mapper.Map<IEnumerable<ReceitaDto>>(resultados));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ReceitaDto>> BuscarReceita(long id)
         {
-            var resultado = await _receitaService.BuscarReceita(id);
-            return Ok(_mapper.Map<ReceitaDto>(resultado));
+            try
+            {
+                var resultado = await _receitaService.BuscarReceita(id);
+                return Ok(_mapper.Map<ReceitaDto>(resultado));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<ReceitaDto>> AtualizarReceita([FromBody] ReceitaDto receitaDto,
             long id)
         {
-            var resultado = await _receitaService.AtualizarReceita(_mapper.Map<ReceitaDominio>(receitaDto)
-                , id);
-            if (resultado != null) return Ok(_mapper.Map<ReceitaDto>(resultado));
-            return BadRequest();
+            try
+            {
+                var resultado = await _receitaService.AtualizarReceita(_mapper.Map<ReceitaDominio>(receitaDto)
+                    , id);
+                if (resultado != null) return Ok(_mapper.Map<ReceitaDto>(resultado));
+                return BadRequest();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> ExcluirReceita(long id)
         {
-            var resultado = await _receitaService.ExcluirReceita(id);
-            if (resultado) return Ok(resultado);
-            return BadRequest();
+            try
+            {
+                var resultado = await _receitaService.ExcluirReceita(id);
+                if (resultado) return Ok(resultado);
+                return BadRequest();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
         }
     }
 }
