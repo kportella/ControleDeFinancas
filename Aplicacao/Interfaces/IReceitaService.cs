@@ -12,7 +12,7 @@ namespace Aplicacao.Interfaces
     {
         Task<ReceitaDominio> CadastrarReceita(ReceitaDominio receitaDominio);
         Task<ReceitaDominio> BuscarReceita(long id);
-        Task<IEnumerable<ReceitaDominio>> BuscarTodasReceitas();
+        Task<IEnumerable<ReceitaDominio>> BuscarReceitas(string? descricao);
         Task<ReceitaDominio> AtualizarReceita(ReceitaDominio receitaDominio, long id);
         Task<bool> ExcluirReceita(long id);
     }

@@ -36,14 +36,14 @@ namespace Api.Controllers
             }
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ReceitaDto>>> BuscarTodasReceitas()
+        public async Task<ActionResult<IEnumerable<ReceitaDto>>> BuscarReceitas(string? descricao)
         {
             try
             {
-                var resultados = await _receitaService.BuscarTodasReceitas();
+                var resultados = await _receitaService.BuscarReceitas(descricao);
                 return Ok(_mapper.Map<IEnumerable<ReceitaDto>>(resultados));
             }
-            catch (Exception)
+            catch (Exception)   
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
             }

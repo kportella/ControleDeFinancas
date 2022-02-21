@@ -68,5 +68,13 @@ namespace Infraestrutura.Repositories
                 .FirstOrDefaultAsync();
             return resultado;
         }
+        public async Task<IEnumerable<ReceitaDominio>> BuscarReceitasPorDescricao(string descricao)
+        {
+            var resultados = await _context.Receita.
+                Where(r => r.Descricao.ToLower() == descricao).
+                ToListAsync();
+            return resultados;
+        }
+
     }
 }

@@ -38,9 +38,11 @@ namespace Aplicacao.Services
             return resultado;
         }
 
-        public async Task<IEnumerable<ReceitaDominio>> BuscarTodasReceitas()
+        public async Task<IEnumerable<ReceitaDominio>> BuscarReceitas(string? descricao)
         {
-            var resultados = await _receitaRepository.BuscarTodasReceitas();
+            IEnumerable<ReceitaDominio> resultados;
+            if (descricao == null) resultados = await _receitaRepository.BuscarTodasReceitas();
+            else resultados = await _receitaRepository.BuscarReceitasPorDescricao(descricao);
             return resultados;
         }
 

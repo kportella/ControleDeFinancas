@@ -15,5 +15,7 @@ namespace Infraestrutura.Interfaces
         Task<IEnumerable<ReceitaDominio>> BuscarTodasReceitas();
         Task<ReceitaDominio> AtualizarReceita(ReceitaDominio receitaDominio);
         Task<bool> ExcluirReceita(long id);
+        Task<IEnumerable<ReceitaDominio>> BuscarReceitasPorDescricao(string descricao);
+
     }
 }
