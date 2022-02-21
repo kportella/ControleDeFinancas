@@ -11,5 +11,17 @@ namespace Dominio
     [Table("despesa")]
     public class DespesaDominio: BaseDominio
     {
+        private const long OUTROS = 8;
+        [ForeignKey("categoriaId")]
+        public long CategoriaId { 
+            get 
+            {
+                return CategoriaId;
+            } 
+            set 
+            {
+                if (this.CategoriaId > OUTROS) CategoriaId = OUTROS;
+            } 
+        }
     }
 }
