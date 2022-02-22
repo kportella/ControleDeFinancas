@@ -37,11 +37,11 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DespesaDto>>> BuscarTodasDespesas()
+        public async Task<ActionResult<IEnumerable<DespesaDto>>> BuscarDespesas(string? descricao)
         {
             try
             {
-                var resultados = await _despesaService.BuscarTodasDespesas();
+                var resultados = await _despesaService.BuscarDespesas(descricao);
                 return Ok(_mapper.Map<IEnumerable<DespesaDto>>(resultados));
             }
             catch (Exception)

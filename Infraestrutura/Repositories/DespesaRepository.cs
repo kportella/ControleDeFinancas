@@ -63,5 +63,12 @@ namespace Infraestrutura.Repositories
                 return false;
             }
         }
+        public async Task<IEnumerable<DespesaDominio>> BuscarDespesasPorDescricao(string descricao)
+        {
+            var resultados = await _context.Despesa.
+                Where(d => d.Descricao.ToLower() == descricao).
+                ToListAsync();
+            return resultados;
+        }
     }
 }

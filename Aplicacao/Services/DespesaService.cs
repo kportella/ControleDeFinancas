@@ -11,6 +11,7 @@ namespace Aplicacao.Services
 {
     public class DespesaService : IDespesaService
     {
+        private const long OUTROSID = 8;
         private readonly IDespesaRepository _despesaRepository;
 
         public DespesaService(IDespesaRepository despesaRepository)
@@ -22,15 +23,19 @@ namespace Aplicacao.Services
             if (despesaDominio == null) return null;
             if (!despesaDominio.VerificarDescricao()) return null;
 
+            if (despesaDominio.CategoriaId > OUTROSID) despesaDominio.CategoriaId = OUTROSID;
+
             var cadastroRepetido = await _despesaRepository.VerificarDespesaMes(despesaDominio);
             if (cadastroRepetido != null) return null;
             var resultado = await _despesaRepository.CadastrarDespesa(despesaDominio);
 
             return resultado;
         }
-        public async Task<IEnumerable<DespesaDominio>> BuscarTodasDespesas()
+        public async Task<IEnumerable<DespesaDominio>> BuscarDespesas(string? descricao)
         {
-            var resultados = await _despesaRepository.BuscarTodasDespesas();
+            IEnumerable<DespesaDominio> resultados;
+            if (descricao == null) resultados = await _despesaRepository.BuscarTodasDespesas();
+            else resultados = await _despesaRepository.BuscarDespesasPorDescricao(descricao);
             return resultados;
         }
         public async Task<DespesaDominio> BuscarDespesa(long id)
