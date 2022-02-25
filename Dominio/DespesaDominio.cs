@@ -12,6 +12,6 @@ namespace Dominio
     public class DespesaDominio: BaseDominio
     {
         [ForeignKey("categoriaId")]
-        public long CategoriaId { get; set; }
+        public int CategoriaId { get; set; }
     }
 }

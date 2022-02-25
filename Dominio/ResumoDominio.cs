@@ -17,5 +17,6 @@ namespace Dominio
                 return ReceitaMesTotal - DespesaMesTotal;
             }
         }
+        public IEnumerable<CategoriaDespesaDominio> Categorias {  get; set; }
     }
 }

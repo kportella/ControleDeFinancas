@@ -11,7 +11,7 @@ namespace Aplicacao.Services
 {
     public class DespesaService : IDespesaService
     {
-        private const long OUTROSID = 8;
+        private const int OUTROSID = 8;
         private readonly IDespesaRepository _despesaRepository;
 
         public DespesaService(IDespesaRepository despesaRepository)

@@ -35,7 +35,13 @@ namespace Aplicacao.Services
             {
                 resumoMes.DespesaMesTotal += despesa.Valor;
             }
+            var result = despesasMes.GroupBy(d => d.CategoriaId).Select(dg => new CategoriaDespesaDominio
+            {
+                CategoriaId = dg.First().CategoriaId,
+                ValorTotal = dg.Sum(d => d.Valor)
+            }).ToList();
 
+            resumoMes.Categorias = result;
             return resumoMes;
 
         }

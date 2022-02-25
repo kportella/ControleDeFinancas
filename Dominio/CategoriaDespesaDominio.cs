@@ -8,15 +8,10 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    [Table("categoria")]
     public class CategoriaDespesaDominio
     {
-        [Key]
-        [Column("id")]
-        public long Id { get; set; }
-        [Column("categoria")]
-        [Required]
-        [StringLength(100)]
-        public string Categoria { get; set; }
+        public int CategoriaId { get; set; }
+
+        public decimal ValorTotal { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace Aplicacao.Dtos
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
         public DateTime DataDeCadastro { get; set; }
-        public long CategoriaId { get; set; }
+        public int CategoriaId { get; set; }
     }
 }

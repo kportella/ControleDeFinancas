@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace Aplicacao.Dtos
         public decimal ReceitaMesTotal { get; set; }
         public decimal DespesaMesTotal { get; set; }
         public decimal SaldoFinalMes { get; set; }
+        public IEnumerable<CategoriaDespesaDominio> Categorias { get; set; }
     }
 }
