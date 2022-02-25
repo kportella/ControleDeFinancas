@@ -93,5 +93,19 @@ namespace Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
             }
         }
+        [HttpGet("{ano}/{mes}")]
+        public async Task<ActionResult<IEnumerable<DespesaDto>>> BuscarDespesasMes(int ano, int mes)
+        {
+            try
+            {
+                var resultados = await _despesaService.BuscarDespesasMes(ano, mes);
+                return Ok(_mapper.Map<IEnumerable<DespesaDto>>(resultados));
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Tente novamente mais tarde.");
+            }
+        }
     }
 }

@@ -61,5 +61,10 @@ namespace Aplicacao.Services
 
             return resultado;
         }
+        public async Task<IEnumerable<DespesaDominio>> BuscarDespesasMes(int ano, int mes)
+        {
+            var resultados = await _despesaRepository.BuscarDespesasMes(ano, mes);
+            return resultados;
+        }
     }
 }

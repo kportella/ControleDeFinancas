@@ -70,5 +70,13 @@ namespace Infraestrutura.Repositories
                 ToListAsync();
             return resultados;
         }
+        public async Task<IEnumerable<DespesaDominio>> BuscarDespesasMes(int ano, int mes)
+        {
+            var resultados = await _context.Despesa
+                .Where(d => d.DataDeCadastro.Year == ano)
+                .Where(d => d.DataDeCadastro.Month == mes)
+                .ToListAsync();
+            return resultados;
+        }
     }
 }

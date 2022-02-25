@@ -14,8 +14,7 @@ namespace Aplicacao.Interfaces
         Task<DespesaDominio> BuscarDespesa(long id);
         Task<DespesaDominio> AtualizarDespesa(DespesaDominio despesaDominio, long id);
         Task<bool> ExcluirDespesa(long id);
-
-
+        Task<IEnumerable<DespesaDominio>> BuscarDespesasMes(int ano, int mes);
 
     }
 }
