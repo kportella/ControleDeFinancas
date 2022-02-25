@@ -46,6 +46,12 @@ namespace Aplicacao.Services
             return resultados;
         }
 
+        public async Task<IEnumerable<ReceitaDominio>> BuscarReceitasMes(int ano, int mes)
+        {
+            var resultados = await _receitaRepository.BuscarReceitasMes(ano, mes);
+            return resultados;
+        }
+
         public async Task<ReceitaDominio> CadastrarReceita(ReceitaDominio receitaDominio)
         {
             if (receitaDominio == null) return null;

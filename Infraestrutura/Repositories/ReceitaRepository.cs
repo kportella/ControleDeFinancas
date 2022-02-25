@@ -76,5 +76,13 @@ namespace Infraestrutura.Repositories
             return resultados;
         }
 
+        public async Task<IEnumerable<ReceitaDominio>> BuscarReceitasMes(int ano, int mes)
+        {
+            var resultados = await _context.Receita
+                .Where(r => r.DataDeCadastro.Year == ano)
+                .Where(r => r.DataDeCadastro.Month == mes)
+                .ToListAsync();
+            return resultados;
+        }
     }
 }

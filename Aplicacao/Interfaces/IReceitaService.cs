@@ -15,5 +15,6 @@ namespace Aplicacao.Interfaces
         Task<IEnumerable<ReceitaDominio>> BuscarReceitas(string? descricao);
         Task<ReceitaDominio> AtualizarReceita(ReceitaDominio receitaDominio, long id);
         Task<bool> ExcluirReceita(long id);
+        Task<IEnumerable<ReceitaDominio>> BuscarReceitasMes(int ano, int mes);
     }
 }
